@@ -1,0 +1,101 @@
+
+._sjsselect_parent 
+{
+	/* Основной цвет элемента */
+	@color:#74DA43;
+	
+	._sjsselect {
+		/* Высота всего контейнера плагина */
+		@height: 30px; 
+		/* Вертикальный отступ внутри контейнера */
+		@padding-vert: 3px;	
+		/* Высота выбранной опции */
+		@liheight: @height - 2 * @padding-vert - 4;
+		
+		height: @height; 
+		padding:0 5px;
+		background-color:white;
+		border:1px solid gray;
+		cursor:pointer;
+		
+		&.focused {			
+			outline:none;
+		    border-color:darken( @color,20);
+		    box-shadow:0 0 6px @color;
+		    border-bottom:0;
+		}
+		
+		/* Выбранное значение */
+		li { 		
+			float:left; 			
+			height:@liheight;	
+			background-color:#f2f2f2;
+			padding:0px 4px 0 8px; margin:@padding-vert 2px;
+			border:1px solid #d3d3d3; border-radius:2px;
+			
+			&:hover { box-shadow:inset 0px 0px 5px rgba(0,0,0,0.1); }
+			&:hover ._sjsselect_delete { text-decoration: none; }
+			&:hover ._sjsselect_text { }
+			
+			/* Текст */
+			._sjsselect_text {
+				cursor:default;
+				display: block;
+				float:left;
+				height:100%;					
+			}			
+		}
+		
+		/* Кнопка удалить */
+		._sjsselect_delete {
+			display: block; 
+			float:left;
+			background-repeat: no-repeat; background-position: 50% 50%; background-image: url('../img/delete.png');
+			cursor:pointer;	text-decoration: none;
+			width:20px; height:100%;
+			
+			&:hover, .hover { background-image: url('../img/delete_hover.png'); }
+			&:active, .active { background-image: url('../img/delete_active.png'); }
+		}
+		
+		/* Поле ввода для поиска */
+		#_sjsselect_search {		
+			background:none;
+			border:none;
+			width:50px;
+			padding:0;
+			
+			&:hover { box-shadow:none; }
+			
+			/* Поле ввода */
+			input {
+				height:@liheight;
+				width:40px;
+				border:none;
+				background: none;
+				padding:0 5px;
+				
+				&:focus { outline: none; }
+			}
+		}
+	}
+	
+	/* Выпадающий список */
+	._sjsselect_dropdown {
+		height:150px;
+		display:none;
+		background-color:white;
+		border:1px solid gray;
+		border-top:0;
+		overflow:auto;		
+		padding:2px 0px;
+		box-shadow:0 1px 6px @color;
+		
+		li {
+			cursor:pointer;
+			padding:2px 10px; 
+			&:hover { background-color:darken(@color,20); color:white; }	
+		}
+	}	
+}
+	
