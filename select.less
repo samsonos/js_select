@@ -10,7 +10,7 @@
 		/* Вертикальный отступ внутри контейнера */
 		@padding-vert: 3px;	
 		/* Высота выбранной опции */
-		@liheight: @height - 2 * @padding-vert - 4;
+		@liheight: @height - (2 * @padding-vert)-2;
 		
 		height: @height; 
 		padding:0 5px;
@@ -29,6 +29,7 @@
 		li { 		
 			float:left; 			
 			height:@liheight;	
+			line-height:@liheight - 1px;	
 			background-color:#f2f2f2;
 			padding:0px 4px 0 8px; margin:@padding-vert 2px;
 			border:1px solid #d3d3d3; border-radius:2px;
