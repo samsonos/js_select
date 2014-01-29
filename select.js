@@ -24,7 +24,7 @@ SamsonJS.extend({
 		
 		// Блок для поля ввода для поиска
 		var inputBlock = s('<li id="_sjsselect_search"></li>');
-		
+
 		// Поле ввода для поиска
 		var search = s('<input type="text">');
 		
@@ -80,6 +80,9 @@ SamsonJS.extend({
 			
 			// Спрячем опцию
 			option.a('hidden','hidden');
+
+            // Clear search field
+            search.val('');
 		};	
 		
 		/** Обработчик завершения выбора элемента */
@@ -98,6 +101,7 @@ SamsonJS.extend({
 			var offset = search.offset();
 			dropdown.top(offset.top);				
 			dropdown.show();
+            s('li', dropdown).show();
 			
 			container.addClass('focused');
 		};
@@ -135,7 +139,26 @@ SamsonJS.extend({
 				
 				// Если опция выбрана добавим её сразу
 				if( _option.a('selected')) addOption(option);
-			}		
+			}
+
+            // Bind option search
+            search.keyup(function(input){
+                var value = input.val();
+                // Create matching pattern
+                var pattern = new RegExp(value,'i');
+                // If we have some input
+                if (value.length && value != '') {
+                    // Hide all li's and iterate them
+                    s('li', dropdown).hide().each(function(li){
+                        // Show li if it matches pattern
+                        if (li.text().match(pattern)) {
+                            li.show();
+                        }
+                    });
+                } else { // Show all options
+                    s('li', dropdown).show();
+                }
+            });
 			
 			// Обработчик потере элементом фокуса
 			s('body').click(endSelection);
