@@ -14,10 +14,10 @@ SamsonJS.extend({
 		var o = this;			
 		
 		// Родительский контейнер плагина
-		var parent = s('<div class="_sjsselect_parent"></div>');
+		var parent = s('<div class="_sjsselect_parent clearfix"></div>');
 		
 		// Контейнер плагина
-		var container = s('<ul class="_sjsselect" tabindex="-1"></ul>');
+		var container = s('<ul class="_sjsselect clearfix" tabindex="-1"></ul>');
 		
 		// Контейнер для выпадающего списка
 		var dropdown = s('<ul class="_sjsselect_dropdown"></ul>');
@@ -105,6 +105,10 @@ SamsonJS.extend({
 		/** Инициализировать плагин */
 		var init = function()
 		{
+            // Change parent width to fixed select width, for giving designers ability
+            // to set element width
+            parent.width(o.width());
+
 			// Спрячем селект
 			o.hide();
 			
@@ -137,7 +141,7 @@ SamsonJS.extend({
 			s('body').click(endSelection);
 			
 			// Обработчик фокуса на контейнере
-			container.click(startSelection, true, true );	
+			container.click(startSelection, true, true );
 			
 			// Вставим контейнер плагина перед селектом
 			o.insertBefore(parent);
