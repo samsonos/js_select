@@ -50,7 +50,7 @@ SamsonJS.extend({
 			if( option ) 
 			{
 				// Покажем опцию
-				option.a('hidden','');
+				option.removeClass('hidden');
 				
 				// Если есть ссылка на оригинал опции в селекте - установим его
 				if( option._origin ) option._origin.a('selected','');
@@ -79,7 +79,7 @@ SamsonJS.extend({
 			if( option._origin )option._origin.a('selected','selected');
 			
 			// Спрячем опцию
-			option.a('hidden','hidden');
+			option.addClass('hidden');
 
             // Clear search field
             search.val('');
@@ -112,12 +112,12 @@ SamsonJS.extend({
             // Change parent width to fixed select width, for giving designers ability
             // to set element width
             parent.width(o.width());
-
-			// Спрячем селект
-			o.hide();
 			
 			// Получим все опции селекта
-			var _options = s( 'option', o).elements;	
+			var _options = s( 'option', o).elements;
+
+            // Спрячем селект
+            o.hide();
 			
 			// Пометим каждую опцию специальным классом
 			if (_options) for ( var i = 0; i < _options.length; i++) 
@@ -149,7 +149,7 @@ SamsonJS.extend({
                 // If we have some input
                 if (value.length && value != '') {
                     // Hide all li's and iterate them
-                    s('li', dropdown).hide().each(function(li){
+                    s('li:not(.hidden)', dropdown).hide().each(function(li){
                         // Show li if it matches pattern
                         if (li.text().match(pattern)) {
                             li.show();
