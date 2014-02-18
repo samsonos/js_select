@@ -11,8 +11,8 @@ SamsonJS.extend({
 	selectify : function()
 	{
 		// Указатель на текущий селект 
-		var o = this;			
-		
+		var o = this;
+
 		// Родительский контейнер плагина
 		var parent = s('<div class="_sjsselect_parent clearfix"></div>');
 		
@@ -27,21 +27,33 @@ SamsonJS.extend({
 
 		// Поле ввода для поиска
 		var search = s('<input type="text">');
+
+        // Create input for order storing
+        var orderBlock = s('<input type="hidden" name="_order'+this.a('name')+'">');
+
+        // Create elememnt to store selected values order
+        o.selected = {};
 		
 		// Сформируем основные блоки
 		inputBlock.append(search);
-		container.append( inputBlock );
-		parent.append( container );
-		parent.append( dropdown );
+		container.append(inputBlock);
+		parent.append(container);
+		parent.append(dropdown);
+        parent.append(orderBlock);
+
 		
 		// Если это не селект - ничего не делаем
-		if(!o.is('SELECT')) return o;			
-		
+		if(!o.is('SELECT')) return o;
+
 		/** Обрабочик удаления опции */
 		var removeOption = function( li )
 		{				
 			// Получим опцию
 			var option = li.__block;
+
+            // Remove selected value
+            delete o.selected[option.val()];
+            saveOrder();
 			
 			// Удалим блок
 			if( li ) li.remove();
@@ -55,7 +67,17 @@ SamsonJS.extend({
 				// Если есть ссылка на оригинал опции в селекте - установим его
 				if( option._origin ) option._origin.a('selected','');
 			}
-		};		
+		};
+
+        /** */
+        var saveOrder = function()
+        {
+            var value = '';
+            for (var item in o.selected) {
+                value += item+',';
+            }
+            orderBlock.val(value);
+        }
 		
 		/** Обработчик выбора опции */
 		var addOption = function( option )
@@ -68,6 +90,10 @@ SamsonJS.extend({
 			
 			// Свяжем блок с опцией
 			li.__block = option;
+
+            // Store selected value
+            o.selected[option.val()] = option;
+            saveOrder();
 			
 			// Повесим событие на удаление опции
 			s( '._sjsselect_delete', li ).click( function(){ removeOption( li ); }, true, true );
