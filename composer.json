@@ -1,1 +1,8 @@
-{"name":"samsonos/select","author":"Vitaly Iegorov <egorov@samsonos.com>","version":"0.0.1","require":{"SamsonJS":"*.*.*"}}
+{
+	"name":"samsonos/js_select",
+	"author":"Vitaly Iegorov <egorov@samsonos.com>",	
+	"minimum-stability":"dev",
+	"require":{
+		"samsonos/js_core":"*"
+	}
+}
