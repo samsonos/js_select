@@ -137,7 +137,10 @@ SamsonJS.extend({
 		{
             // Change parent width to fixed select width, for giving designers ability
             // to set element width
-            parent.width(o.width());
+
+            if (o.css('width')) {
+                parent.width(o.css('width'));
+            }
 			
 			// Получим все опции селекта
 			var _options = s( 'option', o).elements;
