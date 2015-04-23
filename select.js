@@ -28,6 +28,8 @@ SamsonJS.extend({
 		// Поле ввода для поиска
 		var search = s('<input type="text">');
 
+        var lastAdded;
+
         // Create input for order storing
         var orderBlock = s('<input type="hidden" name="_order'+this.a('name')+'">');
 
@@ -100,6 +102,8 @@ SamsonJS.extend({
 			
 			// Выведем выбранную опцию в контейнер плагина
 			inputBlock.insertBefore( li );
+
+            lastAdded = li;
 			
 			// Если есть ссылка на оригинал опции в селекте - установим его
 			if( option._origin )option._origin.a('selected','selected');
@@ -122,6 +126,11 @@ SamsonJS.extend({
 		/** Обработчик активации элемента */
 		var startSelection = function()
 		{
+            if (o.DOMElement.hasAttribute('single')) {
+                if (lastAdded !== undefined) {
+                    removeOption(lastAdded);
+                }
+            }
 			search.focus();
 			
 			var offset = search.offset();
