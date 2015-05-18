@@ -126,6 +126,8 @@ SamsonJS.extend({
 		/** Обработчик активации элемента */
 		var startSelection = function()
 		{
+            hideAll();
+
             if (o.DOMElement.hasAttribute('single')) {
                 if (lastAdded !== undefined) {
                     removeOption(lastAdded);
@@ -140,6 +142,11 @@ SamsonJS.extend({
 			
 			container.addClass('focused');
 		};
+
+        var hideAll = function () {
+            s('._sjsselect').removeClass('focused');
+            s('._sjsselect_dropdown').hide();
+        };
 		
 		/** Инициализировать плагин */
 		var init = function()
@@ -197,7 +204,7 @@ SamsonJS.extend({
                     s('li', dropdown).show();
                 }
             });
-			
+
 			// Обработчик потере элементом фокуса
 			s('body').click(endSelection);
 			
