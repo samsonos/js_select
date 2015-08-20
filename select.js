@@ -88,7 +88,7 @@ SamsonJS.extend({
 			endSelection();
 			
 			// Создадим блок в контейнере плагина
-			var li = s('<li value="'+option.val()+'"><span class="_sjsselect_text">'+option.text()+'</span><span class="_sjsselect_delete"></span></li>');
+			var li = s('<li value="'+option.val()+'"><span class="_sjsselect_text">'+option.text()+'</span><span value="'+option.val()+'" class="_sjsselect_delete"></span></li>');
 			
 			// Свяжем блок с опцией
 			li.__block = option;
