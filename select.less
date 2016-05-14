@@ -10,7 +10,7 @@
 		/* Вертикальный отступ внутри контейнера */
 		@padding-vert: 3px;	
 		/* Высота выбранной опции */
-		@liheight: @height - (2 * @padding-vert)-2;
+		@lineheight: @height - (2 * @padding-vert)-2;
 		
 		min-height: @height;
 		padding:0 5px;
@@ -28,8 +28,8 @@
 		/* Выбранное значение */
 		li { 		
 			float:left; 			
-			height:@liheight;	
-			line-height:@liheight - 1px;	
+			height: @lineheight;
+			line-height: @lineheight - 1px;
 			background-color:#f2f2f2;
 			padding:0px 4px 0 8px; margin:@padding-vert 2px;
 			border:1px solid #d3d3d3; border-radius:2px;
@@ -51,12 +51,14 @@
 		._sjsselect_delete {
 			display: block; 
 			float:left;
-			background-repeat: no-repeat; background-position: 50% 50%; background-image: url('../img/delete.png');
+			background-repeat: no-repeat; 
+			background-position: 50% 50%; 
+			background-image: url('img/delete.png');
 			cursor:pointer;	text-decoration: none;
 			width:20px; height:100%;
 			
-			&:hover, .hover { background-image: url('../img/delete_hover.png'); }
-			&:active, .active { background-image: url('../img/delete_active.png'); }
+			&:hover, .hover { background-image: url('img/delete_hover.png'); }
+			&:active, .active { background-image: url('img/delete_active.png'); }
 		}
 		
 		/* Поле ввода для поиска */
@@ -70,7 +72,7 @@
 			
 			/* Поле ввода */
 			input {
-				height:@liheight;
+				height: @lineheight;
 				width:100%;
 				border:none;
 				background: none;
